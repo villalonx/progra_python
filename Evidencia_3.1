@@ -1,0 +1,36 @@
+import pickle
+
+# Definir una clase simple para representar un objeto
+class MiObjeto:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+# Función para serializar y almacenar el objeto en un archivo binario
+def serializar_objeto(objeto, nombre_archivo):
+    with open(nombre_archivo, 'wb') as archivo:
+        pickle.dump(objeto, archivo)
+    print(f"Objeto serializado y almacenado en {nombre_archivo}")
+
+# Función para cargar y deserializar el objeto desde el archivo binario
+def deserializar_objeto(nombre_archivo):
+    with open(nombre_archivo, 'rb') as archivo:
+        objeto_recuperado = pickle.load(archivo)
+    return objeto_recuperado
+
+# Crear un objeto
+mi_objeto = MiObjeto(nombre="Juan", edad=25)
+
+# Serializar y almacenar el objeto en un archivo pickle
+nombre_archivo_pickle = "mi_objeto.pickle"
+serializar_objeto(mi_objeto, nombre_archivo_pickle)
+
+# Deserializar y recuperar el objeto desde el archivo pickle
+objeto_recuperado = deserializar_objeto(nombre_archivo_pickle)
+
+# Mostrar el objeto original y el objeto recuperado
+print("\nObjeto original:")
+print(f"Nombre: {mi_objeto.nombre}, Edad: {mi_objeto.edad}")
+
+print("\nObjeto recuperado:")
+print(f"Nombre: {objeto_recuperado.nombre}, Edad: {objeto_recuperado.edad}")
